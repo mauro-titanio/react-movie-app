@@ -1,0 +1,114 @@
+import { Col, Container, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
+import { useParams } from "react-router";
+import useMovieDetails from "../hooks/useMovieDetails";
+import styles from "./MovieDetails.module.scss";
+import GoBackButton from "../components/Navigation/GoBackButton";
+import { Film, HeartFill, Heart } from "react-bootstrap-icons";
+import { useEffect } from "react";
+import { useState } from "react";
+
+export default function MovieDetails(props) {
+  const { movieId } = useParams();
+  const imageUrl = "http://image.tmdb.org/t/p/w1280";
+  const movie = useMovieDetails(movieId);
+  const [isFavourite, setIsFavourite] = useState(false);
+
+  useEffect(() => {
+    let mId = parseInt(movieId, 10);
+    if (props.favourites !== undefined) {
+      if (props.favourites.some((m) => m.id === mId)) {
+        setIsFavourite(true);
+        return;
+      } else {
+        setIsFavourite(false);
+        return;
+      }
+    }
+    return;
+  }, [movieId, props.favourites]);
+
+  return (
+    <div>
+      {movie.isSuccess && (
+        <div
+          style={{
+            backgroundImage: `url(${imageUrl}${movie.data.backdrop_path})`,
+          }}
+          className={styles.backgroundImage}
+        >
+          <div className={`${styles.overlay} p-5`}>
+            <Row className="px-5">
+              <Col lg="4">
+                <Container>
+                  <img
+                    width={300}
+                    src={`${imageUrl}${movie.data.poster_path}`}
+                    alt={movie.data.title}
+                    className="rounded rounded-3 shadow-lg"
+                  />
+                </Container>
+              </Col>
+              <Col lg="7">
+                <h1>{movie.data.title}</h1>
+                <h5 className={styles.tagline}>{movie.data.tagline}</h5>
+                <p>{movie.data.overview}</p>
+                <p>
+                  <strong>Genres:</strong>{" "}
+                  {movie.data.genres.map((genre) => genre.name).join(", ")}
+                </p>
+                <p>
+                  <strong>Director:</strong>{" "}
+                  {movie.data.credits.crew
+                    .filter((p) => p.job === "Director")
+                    .map((person) => person.name)
+                    .join(", ")}
+                </p>
+                <p>
+                  <strong>Cast:</strong>{" "}
+                  {movie.data.credits.cast
+                    .slice(0, 6)
+                    .map((act) => act.name)
+                    .join(", ")}
+                </p>
+                {movie.data.homepage && (
+                  <p>
+                    <strong>Website:</strong>{" "}
+                    <span onClick={() => window.open(`${movie.data.homepage}`)}>
+                      {movie.data.homepage}
+                    </span>
+                  </p>
+                )}
+                <p className="h5">
+                  {isFavourite && (
+                    <OverlayTrigger
+                      overlay={<Tooltip>Remove from favourites</Tooltip>}
+                    >
+                      <HeartFill
+                        className={`me-3 ${styles.addButton} text-danger`}
+                        onClick={() => props.handleFavouritesRemove(movie.data)}
+                      />
+                    </OverlayTrigger>
+                  )}
+                  {!isFavourite && (
+                    <OverlayTrigger
+                      overlay={<Tooltip>Add to favourites</Tooltip>}
+                    >
+                      <Heart
+                        className={`me-3 ${styles.addButton}`}
+                        onClick={() => props.handleFavouritesAdd(movie.data)}
+                      />
+                    </OverlayTrigger>
+                  )}
+                  <OverlayTrigger overlay={<Tooltip>Add to watchlist</Tooltip>}>
+                    <Film className={styles.addButton} />
+                  </OverlayTrigger>
+                </p>
+              </Col>
+            </Row>
+          </div>
+        </div>
+      )}
+      <GoBackButton />
+    </div>
+  );
+}

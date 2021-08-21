@@ -1,0 +1,11 @@
+@import "../../variables.scss";
+.menuList {
+    .menuListItem {
+        background-color: $secondary;
+        color: $light;
+        padding-top: 1em !important;
+        &:hover {
+            background-color: $dark;
+        }
+    }
+}

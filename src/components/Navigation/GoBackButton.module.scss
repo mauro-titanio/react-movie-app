@@ -1,0 +1,17 @@
+.goBackButton {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 3rem;
+    background-color: inherit;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    z-index: 300;
+    &:hover {
+        transition: 300ms ease;
+        transform-origin: center center;
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}

@@ -1,0 +1,43 @@
+.movieCard {
+    font-size: 0.7em;
+    transform-origin: center center;
+    .overlay {
+        opacity: 0;
+        background-color: rgba(0, 0, 0, 0.813);
+    }
+    .cardText {
+        max-height: 5rem;
+        overflow: hidden;
+    }
+    .cardContent {
+        opacity: 0;
+        transition: 300ms ease;
+    }
+    .cardButton {
+        font-size: 1em;
+    }
+    .movieImage {
+        height: 100%;
+    }
+    .lineClamp {
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        -webkit-box-orient: vertical;
+    }
+    &:hover {
+        transform: scale(1.15);
+        z-index: 100;
+        height: fit-content;
+    }
+    &:hover .overlay {
+        opacity: 1;
+    }
+    &:hover .cardContent {
+        transition-delay: 300ms;
+        opacity: 1;
+    }
+}
+
+.d-none {
+    display: none;
+}

@@ -1,0 +1,8 @@
+.moviesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 200px);
+    gap: 2rem;
+    row-gap: 1rem;
+    justify-content: center;
+    padding: 2rem;
+}
