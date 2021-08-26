@@ -21,12 +21,9 @@ export default function MovieCard({ movie }) {
               <Card.Text className={`${styles.cardText} ${styles.lineClamp}`}>
                 {movie.overview}
               </Card.Text>
-              <Link
-                to={"/details/" + movie.id}
-                className={`${styles.cardButton} btn btn-primary btn-sm`}
-              >
+              <div className={`${styles.cardButton} btn btn-primary btn-sm`}>
                 Read more
-              </Link>
+              </div>
             </div>
           </Card.ImgOverlay>
         </Card>
