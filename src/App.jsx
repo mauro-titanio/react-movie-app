@@ -6,6 +6,7 @@ import MovieDetails from "./pages/MovieDetails";
 import MoviesGrid from "./pages/MoviesGrid";
 import SearchPage from "./pages/SearchPage";
 import { useState, useEffect } from "react";
+import Watchlist from "./pages/Watchlist";
 
 function App() {
   const queryClient = new QueryClient();
@@ -57,6 +58,9 @@ function App() {
             </Route>
             <Route exact path="/favourites">
               <Favourites favourites={favourites} />
+            </Route>
+            <Route exact path="/watchlist">
+              <Watchlist/>
             </Route>
           </Switch>
         </Router>

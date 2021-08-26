@@ -6,13 +6,14 @@ import GoBackButton from "../components/Navigation/GoBackButton";
 import { Film, HeartFill, Heart } from "react-bootstrap-icons";
 import { useEffect } from "react";
 import { useState } from "react";
+import useWindowSize from "../hooks/useWindowSize";
 
 export default function MovieDetails(props) {
   const { movieId } = useParams();
   const imageUrl = "http://image.tmdb.org/t/p/w1280";
   const movie = useMovieDetails(movieId);
   const [isFavourite, setIsFavourite] = useState(false);
-
+  const windowSize = useWindowSize()
   useEffect(() => {
     let mId = parseInt(movieId, 10);
     if (props.favourites !== undefined) {
@@ -36,15 +37,15 @@ export default function MovieDetails(props) {
           }}
           className={styles.backgroundImage}
         >
-          <div className={`${styles.overlay} p-5`}>
-            <Row className="px-5">
-              <Col lg="4">
-                <Container>
+          <div className={`${styles.overlay} px-lg-5 py-5 px-3`}>
+            <Row className="px-lg-5 px-md-3 px-sm-1">
+              <Col lg="4" md="6" sm="12" className="mb-4">
+                <Container className="mx-auto p-0 m-0">
                   <img
-                    width={300}
+                    width={windowSize.width >= 1000 ? 300 : '100%'}
                     src={`${imageUrl}${movie.data.poster_path}`}
                     alt={movie.data.title}
-                    className="rounded rounded-3 shadow-lg"
+                    className="rounded rounded-3 shadow-lg mx-auto"
                   />
                 </Container>
               </Col>
@@ -71,7 +72,7 @@ export default function MovieDetails(props) {
                     .join(", ")}
                 </p>
                 {movie.data.homepage && (
-                  <p>
+                  <p className="text-truncate">
                     <strong>Website:</strong>{" "}
                     <span onClick={() => window.open(`${movie.data.homepage}`)}>
                       {movie.data.homepage}
@@ -108,7 +109,7 @@ export default function MovieDetails(props) {
           </div>
         </div>
       )}
-      <GoBackButton />
+  {windowSize.width >= 1000 &&  <GoBackButton />}
     </div>
   );
 }

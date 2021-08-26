@@ -7,6 +7,7 @@ import useSuggestedMovies from "../hooks/useSuggestedMovies";
 import Spinner from "../components/utils/Spinner";
 import { Container } from "react-bootstrap";
 import { useEffect } from "react";
+import useWindowSize from "../hooks/useWindowSize";
 
 export default function SearchPage() {
   const [searchText, setSearchText] = useState(
@@ -14,6 +15,7 @@ export default function SearchPage() {
   );
   const searchedMovies = useSearch(searchText);
   const suggestedMovies = useSuggestedMovies();
+  const windowSize = useWindowSize();
 
   useEffect(() => {
     localStorage.setItem("searchText", searchText);
@@ -46,7 +48,7 @@ export default function SearchPage() {
           <p>No results</p>
         </Container>
       )}
-      <GoBackButton />
+      {windowSize.width >= 1000 && <GoBackButton />}
     </div>
   );
 }

@@ -1,25 +1,25 @@
 
 import MovieCard from "./MovieCard";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, {  Mousewheel, Scrollbar } from "swiper/core";
+import SwiperCore, { Scrollbar } from "swiper/core";
 import "swiper/swiper.min.css";
 import "swiper/components/scrollbar/scrollbar.min.css";
 import "swiper/components/effect-coverflow/effect-coverflow.min.css";
 import styles from "./MoviesCarousel.module.scss";
 import { Fragment } from "react";
-SwiperCore.use([Scrollbar,Mousewheel]);
+import Spinner from "./utils/Spinner";
+SwiperCore.use([Scrollbar,]);
 
 export default function MoviesCarousel({ movies }) {
   return (
     <Fragment>
       {movies.isLoading && (
         <div>
-          <p>Loading...</p>
+         <Spinner/>
         </div>
       )}
       {movies.isSuccess && (
         <Swiper
-          mousewheel={true}
           slidesPerView={2}
           spaceBetween={20}
           scrollbar={{
