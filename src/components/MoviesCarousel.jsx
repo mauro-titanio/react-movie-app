@@ -20,15 +20,15 @@ export default function MoviesCarousel({ movies }) {
       )}
       {movies.isSuccess && (
         <Swiper
-          slidesPerView={2}
+          slidesPerView={1}
           spaceBetween={20}
           scrollbar={{
             hide: true,
           }}
           breakpoints={{
             640: {
-              slidesPerView: 2,
-              spaceBetween: 20,
+              slidesPerView: 1,
+              spaceBetween: 40,
             },
             768: {
               slidesPerView: 4,
