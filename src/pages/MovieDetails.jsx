@@ -10,11 +10,11 @@ import useWindowSize from "../hooks/useWindowSize";
 
 export default function MovieDetails(props) {
   const { movieId } = useParams();
-  const imageUrl = "http://image.tmdb.org/t/p/w1280";
+  const imageUrl = "https://image.tmdb.org/t/p/w1280";
   const movie = useMovieDetails(movieId);
   const [isFavourite, setIsFavourite] = useState(false);
   const windowSize = useWindowSize()
-  
+
   useEffect(() => {
     let mId = parseInt(movieId, 10);
     if (props.favourites !== undefined) {
