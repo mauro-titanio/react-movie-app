@@ -5,7 +5,7 @@ import { useQuery } from "react-query";
 const fetchSearch = (searchText) =>
   axios
     .get(
-      `${process.env.REACT_APP_API_BASE_URL}/search/movie/?api_key=${process.env.REACT_APP_API_KEY}&query=${searchText}`
+      `https://api.themoviedb.org/3/search/movie/?api_key=${process.env.REACT_APP_API_KEY}&query=${searchText}`
     )
     .then((response) => response.data);
 
