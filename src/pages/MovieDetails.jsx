@@ -14,6 +14,7 @@ export default function MovieDetails(props) {
   const movie = useMovieDetails(movieId);
   const [isFavourite, setIsFavourite] = useState(false);
   const windowSize = useWindowSize()
+  
   useEffect(() => {
     let mId = parseInt(movieId, 10);
     if (props.favourites !== undefined) {

@@ -2,7 +2,6 @@ import { Container } from "react-bootstrap";
 import FavouritesGrid from "../components/FavouritesGrid";
 
 export default function Favourites(props) {
-  console.log("From fav page", props.favourites);
 
   return (
     <div>

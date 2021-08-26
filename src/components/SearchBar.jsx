@@ -4,9 +4,6 @@ import { Search } from "react-bootstrap-icons";
 
 export default function SearchBar(props) {
 
-
-
-
   return (
     <Row className="justify-content-center p-4 mb-4">
       <Col lg={8}>
