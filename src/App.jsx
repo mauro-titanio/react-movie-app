@@ -7,6 +7,7 @@ import MoviesGrid from "./pages/MoviesGrid";
 import SearchPage from "./pages/SearchPage";
 import { useState, useEffect } from "react";
 import Watchlist from "./pages/Watchlist";
+import Footer from "./components/utils/Footer";
 
 function App() {
   const queryClient = new QueryClient();
@@ -63,6 +64,7 @@ function App() {
               <Watchlist/>
             </Route>
           </Switch>
+          <Footer/>
         </Router>
       </QueryClientProvider>
     </div>
