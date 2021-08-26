@@ -46,6 +46,7 @@ function App() {
           <Switch>
             <Route exact path="/">
               <MoviesGrid />
+              <Footer/>
             </Route>
             <Route exact path="/details/:movieId">
               <MovieDetails
@@ -64,7 +65,6 @@ function App() {
               <Watchlist/>
             </Route>
           </Switch>
-          <Footer/>
         </Router>
       </QueryClientProvider>
     </div>
